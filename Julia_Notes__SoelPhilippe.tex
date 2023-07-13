@@ -59,7 +59,8 @@
 \hypersetup{
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
-\title{Personal Notes on the \textbf{Julia} Programming language}
+
+\title{Personal Notes on \textbf{Julia}}
 \author{\texttt{Soel Philippe}}
 \date{July 2023}
 \begin{document}
@@ -79,6 +80,7 @@ Refer only to the official documentation (https://docs.julialang.org/en/v1/)}.
 \newpage
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
+
 The \textbf{Julia} programming language aims to fill the role of a
 programming language eliminating the performance trade-off, providing a
 single environment productive enough for prototyping and efficient
@@ -86,11 +88,11 @@ enough for deploying performance-intensive applications. The
 \textbf{Julia} aims to be a flexible dynamic language, appropriate for
 scientific and numerical computing, with performance comparable to
 traditional statically-typed languages.\\
-Julia's compiler is different from the interpreters used for languages
-like \textbf{Python} or \textbf{R} in such a way that one may find it's
-performance unintuitive at first but one is fully acknowledged of how
-\textbf{Julia} works, it's easy to write code that's nearly as fast as
-\textbf{C}.
+\textbf{Julia}'s compiler is different from the interpreters used for
+languages like \textbf{Python} or \textbf{R} in such a way that one may
+find it's performance unintuitive at first but once fully acknowledged
+of how \textbf{Julia} works, it's easy to write code that's nearly as
+fast as \textbf{C}.
 
 \textbf{Julia} implements \emph{type inference}, \emph{just-in-time
 (JIT) compilation} and \emph{ahead-of-time compilation} implemented
@@ -105,23 +107,22 @@ dynamic languages, including \textbf{Lisp}, \textbf{Perl},
 \subsection{Julia Departures from Typical
 PL:}\label{julia-departures-from-typical-pl}}
 
-\textbf{Julia} \emph{Base} and the standard library are written in
+\emph{Base} \textbf{Julia} and the standard library are written in
 \textbf{Julia} itself.\\
 \textbf{Julia} has a rich language of types for constructing and
 describing objects that can also optionally be used to make type
 declarations.\\
-In \textbf{Julia}, every object has a type. The lack of type
-declarations in most dynamic languages, however, means that one cannot
-instruct the compiler about the types of values, and often cannot
-explicitly talk about types at all. However, in static languages while
-one can (and usually must) annotate types for the compiler, types exist
-only at compile time and cannot be manipulated or expressed at run
-time.\\
-In \textbf{Julia}, types are themselves run-time objects and can also be
+In \textbf{Julia} every object has a type. The lack of type declarations
+in most dynamic languages, however, means that one cannot instruct the
+compiler about the types of values, and often cannot explicitly talk
+about types at all. However, in static languages while one can (and
+usually must) annotate types for the compiler, types exist only at
+compile time and cannot be manipulated or expressed at run time.\\
+In \textbf{Julia} types are themselves run-time objects and can also be
 used to convey information to the compiler.\\
 \emph{Types} and \emph{Multiple Dispatch} are the core unifying features
 of \textbf{Julia}.\\
-In \textbf{Julia}, operators are functions with special notation.
+In \textbf{Julia} operators are functions with special notation.
 
 \hypertarget{summary-of-julia-features}{%
 \subsection{Summary of Julia
@@ -166,7 +167,7 @@ starting an interactive session known as \texttt{REPL} through running
 Exit the interactive session by pressing \texttt{CTRL-D} or typing
 \texttt{exit()}.\\
 To evaluate an expression written in a source file \emph{file.jl}, write
-\texttt{include("file.jl")}.\\
+\texttt{include("file.jl")} (within the \texttt{REPL}).\\
 To run a code in a file non-interactively run it as:
 
 \begin{verbatim}
@@ -182,12 +183,13 @@ Get help by typing \texttt{?} into an empty \textbf{Julia} REPL prompt.
 
 \textbf{Julia} provides an extremely flexible system for naming
 variables. Variable names are case-sensitive, and have no semantic
-meaning. In \textbf{Julia} \texttt{REPL} and several other julia editing
-environments, one can type many Unicode math symbols by typing the
-backslashed \LaTeX symbol name followed by \texttt{tab}. For example,
-the variable name \(\delta\) can be entered by typing
-\texttt{\textbackslash{}delta-tab}. \textbf{Julia} will let you redefine
-built-in constants and functions if needed (though not recommended).
+meaning. In the \textbf{Julia} \texttt{REPL} and several other
+\textbf{Julia} editing environments, one can type many Unicode math
+symbols by typing the backslashed \LaTeX symbol name followed by
+\texttt{{[}TAB{]}}. For example, the variable name \(\delta\) can be
+entered by typing \texttt{\textbackslash{}delta-tab}. \textbf{Julia}
+will let you redefine built-in constants and functions if needed (though
+not recommended).
 
 \hypertarget{allowed-variable-names}{%
 \subsection{Allowed Variable Names}\label{allowed-variable-names}}
@@ -212,12 +214,12 @@ A particular class of variable names is one that contains only
 underscores. These identifiers can only be \emph{left values}.
 
 \hypertarget{assignment-expressions-and-assignment-versus-mutation}{%
-\subsection{Assignment expressions and assignment versus
-mutation}\label{assignment-expressions-and-assignment-versus-mutation}}
+\subsection{Assignment Expressions and Assignment Versus
+Mutation}\label{assignment-expressions-and-assignment-versus-mutation}}
 
 An assignment \texttt{variable\ =\ value} binds the name
-\texttt{variable} to the \texttt{value} computed on the right-hand suden
-abd rge whole assignment is treated by \textbf{Julia} as an expression
+\texttt{variable} to the \texttt{value} computed on the right-hand side
+and the whole assignment is treated by \textbf{Julia} as an expression
 equal to the right-hand-side value. Therefore, assignments can be
 chained or used in other expressions. That is the reason why their
 result is shown in the \texttt{REPL} as the value of the right-hand
@@ -238,7 +240,7 @@ A common confusion is the distinction between \textbf{assignment}
   Word separation can be indicated by underscores ('\_'), but
   discouraged.
 \item
-  Names of Types and Modules befin with capital letter and word-sep is
+  Names of Types and Modules begin with capital letter and word-sep is
   on CamelCase.
 \item
   Names of functions and macros are in lower case, without Underscores.
@@ -280,7 +282,7 @@ interoperate naturally without explicit casting thanks to the
 
 \begin{longtable}[]{@{}lcc@{}}
 \toprule\noalign{}
-Type & Signed & Number of Bits \\
+Type & Precision & Number of Bits \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
@@ -296,24 +298,24 @@ Float64 & double & 64 \\
 The \textbf{Julia} internal variable \texttt{Sys.WORD\_SIZE} indicates
 whether the target system is 32-bit or 64-bit.
 
-In \textbf{Julia} exceeding the maximum representable value of a given
+In \textbf{Julia}, exceeding the maximum representable value of a given
 type results in a wraparound behavior. To know about the maximum
 representable value of a given type \texttt{T}, type
 \texttt{typemax(T)}.
 
-\textbf{Julia} has the \texttt{BigInt} type in \emph{Arbitrary Precision
-Arithmetic} is recommended instead; implemented for example as
-\texttt{big(10)\^{}19}.
+\textbf{Julia} has the \texttt{BigInt} type to be used for example as
+\texttt{big(10)\^{}19} (see the \emph{Arbitrary Precision Arithmetic}
+section below).
 
 \hypertarget{floating-point-numbers}{%
 \subsection{Floating-Point Numbers}\label{floating-point-numbers}}
 
-Floating-point numbers have two eros, positive zero and negative zero.
+Floating-point numbers have two zeros, positive zero and negative zero.
 They are equal to each other but have different binary representations,
-as can be seen using \texttt{bitstring} function. Check it with the
+as can be seen using the \texttt{bitstring} function. Check it with the
 commands \texttt{bitstring(0.0)} and \texttt{bitstring(-0.0)}. There are
-three specified standard floating-pooint values that do not correspond
-to any point on the real number line: \texttt{-Inf}, \texttt{Inf} and
+three specified standard floating-point values that do not correspond to
+any point on the real number line: \texttt{-Inf}, \texttt{Inf} and
 \texttt{NaN}.
 
 \hypertarget{machine-epsilon}{%
@@ -321,11 +323,11 @@ to any point on the real number line: \texttt{-Inf}, \texttt{Inf} and
 
 Most real numbers cannot be represented exactly with floating-point
 numbers, and so for many purposes it is important to know the distance
-between two adjacent representable floatin-point numbers, which is often
-known as \emph{machine epsilon}. \textbf{Julia} provides \texttt{eps}
-which gives the distance between 1.0 and the next larger representable
-flaoting-point value. Try it as \texttt{eps(Float64)}. (see also
-\texttt{nexfloat}, \texttt{prevfloat})
+between two adjacent representable floating-point numbers, which is
+often known as \emph{machine epsilon}. \textbf{Julia} provides
+\texttt{eps} which gives the distance between 1.0 and the next larger
+representable floating-point value. Try it as \texttt{eps(Float64)} (see
+also \texttt{nexfloat}, \texttt{prevfloat}).
 
 Floating-point arithmetic entails many subtleties which can be
 surprising to users who are unfamiliar with the low-level implementation
@@ -339,8 +341,8 @@ on scientific computation, and also in the following references:
   Standard; however, it is not available for free online.
 \item
   For a brief but lucid presentation of how floating-point numbers are
-  represented, see John D. Cook's article on the subject as well as his
-  introduction to some of the issues arising from how this
+  represented, see the John D. Cook's article on the subject as well as
+  his introduction to some of the issues arising from how this
   representation differs in behavior from the idealized abstraction of
   real numbers.
 \item
@@ -349,35 +351,36 @@ on scientific computation, and also in the following references:
 \item
   For an excellent, in-depth discussion of floating-point numbers and
   issues of numerical accuracy encountered when computing with them, see
-  David Goldberg's paper What Every Computer Scientist Should Know About
-  Floating-Point Arithmetic.
+  David Goldberg's paper \emph{What Every Computer Scientist Should Know
+  About Floating-Point Arithmetic}.
 \item
   For even more extensive documentation of the history of, rationale
-  for, and issues with floatingpoint numbers, as well as discussion of
+  for, and issues with floating-point numbers, as well as discussion of
   many other topics in numerical computing, see the collected writings
   of William Kahan, commonly known as the ``Father of Floating-Point''.
-  Of particular interest may be An Interview with the Old Man of
-  Floating-Point.
+  Of particular interest may be \emph{An Interview with the Old Man of
+  Floating-Point}.
 \end{itemize}
 
-\hypertarget{arbitrary-precisiion-arithmetic}{%
-\subsection{Arbitrary Precisiion
-Arithmetic}\label{arbitrary-precisiion-arithmetic}}
+\hypertarget{arbitrary-precision-arithmetic}{%
+\subsection{Arbitrary Precision
+Arithmetic}\label{arbitrary-precision-arithmetic}}
 
 To allow computations with arbitrary-precision integers and floating
-point numbers, Julia wraps the GNU Multiple Precision Arithmetic Library
-(GMP) and the GNU MPFR Library, respectively. The \texttt{BigInt} and
-\texttt{BigFloat} types are available in \textbf{Julia} for arbitrary
-precision integer and floating point numbers respectively.
+point numbers, \textbf{Julia} wraps the GNU Multiple Precision
+Arithmetic Library (GMP) and the GNU MPFR Library, respectively. The
+\texttt{BigInt} and \texttt{BigFloat} types are available in
+\textbf{Julia} for arbitrary precision integer and floating point
+numbers respectively.
 
 Constructors exist to create these types from primitive numerical types,
 and the string literal \texttt{@big\_str} or \texttt{parse} can be used
 to construct them from \texttt{AbstractString}s. \texttt{BigInt}s can
 also be input as integer literals when they are too big for other
 built-in integer types. Note that as there is no unsigned
-arbitrary-precision integer type in Base (\texttt{BigInt} is sufficient
-in most cases), hexadecimal, octal and binary literals can be used (in
-addition to decimal literals).
+arbitrary-precision integer type in \emph{Base} (\texttt{BigInt} is
+sufficient in most cases), hexadecimal, octal and binary literals can be
+used (in addition to decimal literals).
 
 The default precision (in number of bits of the significand) and
 rounding mode of \texttt{BigFloat} operations can be changed globally by
@@ -409,9 +412,9 @@ end
 \subsection{Numeric Literal
 Coefficients}\label{numeric-literal-coefficients}}
 
-To make common numeric formulae and expressions clearer, Julia allows
-variables to be immediately preceded by a numeric literal, implying
-multiplication:
+To make common numeric formulae and expressions clearer, \textbf{Julia}
+allows variables to be immediately preceded by a numeric literal,
+implying multiplication:
 
 \begin{verbatim}
 julia> z = 1.023
@@ -450,15 +453,15 @@ Expression & Name & Description \\
 x + y & binary plus & performs addition \\
 x * y & times & performs multiplication \\
 x / y & divide & performs division \\
-x ÷ y & x & x/y, truncated to an integer \\
+x ÷ y & integer divide & x/y, truncated to an integer \\
 x ~y & inverse divide & equivalent to y / x \\
 x \^{} y & power & raises x to yth power \\
 x \% y & remainder & equivalent to \texttt{rem(x,\ y)} \\
 \end{longtable}
 
 A numeric literal placed directly before an identifier or parentheses,
-e.g.~2x or 2(x+y), is treated as a multiplication, except with higher
-precedence than other binary operations.
+e.g.~\texttt{2x} or \texttt{2(x+y)}, is treated as a multiplication,
+except with higher precedence than other binary operations.
 
 \hypertarget{boolean-operators}{%
 \subsection{Boolean Operators}\label{boolean-operators}}
@@ -486,7 +489,7 @@ equivalent to
 \texttt{{[}1.25\^{}(2.5),\ 4.0\^{}(2.5),\ 7\^{}(2.5),\ 5.39\^{}(2.5){]}}.
 
 More specifically, \texttt{a\ .\^{}\ b} is parsed as the ``dot'' call
-\texttt{(\^{}).(a,\ b)}, which performs a broadcast operation it can
+\texttt{(\^{}).(a,\ b)}, which performs a broadcast operation. It can
 combine arrays and scalars, arrays of the same size and even arrays of
 different shapes.
 
@@ -560,7 +563,7 @@ Description
 div(x, y) & truncated division; quotient rounded towards zero \\
 fld(x, y) & floored division; quotient rounded towards -Inf \\
 cld(x, y) & ceiling division; quotient rounded towards +Inf \\
-rm(x, y) & remainder; satisfies x == div(x, y)*y + rem(x, y); sign
+rem(x, y) & remainder; satisfies x == div(x, y)*y + rem(x, y); sign
 matches x \\
 mod(x, y) & modulus; satisfies x == fld(x, y)*y + mod(x, y); sign
 matches y \\
@@ -583,11 +586,12 @@ sqrt(x) & square root of x \\
 cbrt(x) & cube root of x \\
 hypot(x, y) & hypotenuse of right-angled triangle with other sides of
 length x and y \\
-exp(x) & natural exponetial function at x \\
+exp(x) & natural exponential function at x \\
 expm1(x) & accurate exp(x)-1 for x near zero \\
 ldexp(x, n) & x*2\^{}n computed efficiently for integer values of n \\
-log(x) & natural logarithm of x \\
-log2(x) & base b logarithm of x \\
+log(x) & base b logarithm of x, default is the natural logarithm (base
+exp(1)) \\
+log2(x) & base 2 logarithm of x \\
 log10(x) & base 10 logarithm of x \\
 log1p(x) & accurate log(1+x) for x near zero \\
 exponent(x) & binary exponent of x \\
@@ -595,7 +599,7 @@ significand(x) & binary significand (a.k.a mantissa) of a floating-point
 number x \\
 \end{longtable}
 
-Trigonometric functions are implemented into \textbf{Julia}
+Almost any trigonometric function is implemented into \textbf{Julia}
 (\texttt{cos}, \texttt{cosh}, \texttt{acosh}\ldots) as well as
 trigonometric functions in degrees instead of radians (\texttt{cosd},
 \texttt{acosd}\ldots).
@@ -640,7 +644,7 @@ Function & Description \\
 imag(z) & imaginary part of z \\
 conj(z) & complex conjugate of z \\
 abs(z) & absolute value of z \\
-abs2(z) & square absolute value of z \\
+abs2(z) & squared absolute value of z \\
 angle(z) & phase angle in radians \\
 \end{longtable}
 
@@ -666,14 +670,14 @@ Stacktrace:
 \subsection{Rational Numbers}\label{rational-numbers}}
 
 \textbf{Julia} has a rational number type to represent exact ratios of
-integers. RAtionals are constructed using the operator \texttt{//}.
+integers. Rationals are constructed using the \texttt{//} operator.
 
 \begin{verbatim}
 julia> -4//12
 -1//3
 \end{verbatim}
 
-This normalized form for a ratio of integers us unique, so equality of
+This normalized form for a ratio of integers is unique, so equality of
 rational values can be tested by checking for equality of the numerator
 and denominator. The standardized numerator and denominator of a
 rational number can be extracted using the built-in \texttt{numerator}
@@ -692,60 +696,62 @@ high-level features about \textbf{Julia}'s strings:
 \tightlist
 \item
   The buit-in concrete type used for strings (and string literals) in
-  \textbf{Julia} is \emph{String}. This supports the full range of
-  Unicode characters via the UTF-8 encoding. (A \texttt{transcode}
-  function is provided to convert to/from Unicode encodings.
+  \textbf{Julia} is \texttt{String}. This supports the full range of
+  Unicode characters via the UTF-8 encoding (A \texttt{transcode}
+  function is provided to convert to/from Unicode encodings).
 \item
   All string types are subtypes of the abstract type
-  \emph{AbstractString}, and external packages define additional
-  *AbstractString** subtypes (e.g.~for other encodings). If you deifne a
-  function expecting a string argument, you should declare the type as
-  \emph{AbstractString} in order to accept any string type.
+  \texttt{AbstractString}, and external packages define additional
+  \texttt{AbstractString} subtypes (e.g.~for other encodings). If you
+  deifne a function expecting a \texttt{String} argument, you should
+  declare the type as \texttt{AbstractString} in order to accept any
+  \texttt{String} type.
 \item
-  Like \textbf{C} and \textbf{Java}, but unlike most dynamic languauges,
+  Like \textbf{C} and \textbf{Java}, but unlike most dynamic languages,
   \textbf{Julia} has a first-class type for representing a single
-  character, called \emph{AbstractChar}. The built-in \emph{Char}
-  subtype of \emph{AbstractChar} is a 32-bit primitive type that can
+  character, called \texttt{AbstractChar}. The built-in \texttt{Char}
+  subtype of \texttt{AbstractChar} is a 32-bit primitive type that can
   represent any Unicode character (and which is based on the UTF-8
   encoding).
 \item
-  As in \textbf{Java}, strings are immutable: the value of an
-  \emph{AbstractString} object cannot be changed. To construct a
-  different string value, you construct a new string from parts of other
-  strings.
+  As in \textbf{Java}, \texttt{String} (objects) are immutable: the
+  value of an \texttt{AbstractString} object cannot be changed. To
+  construct a different \texttt{String} value you construct a new string
+  from parts of other strings.
 \item
-  Conceptually, a string is a partial function from indices to
-  characters: for some index values, no character value is returned, and
-  instread an exception is thrown. This allows for efficient indexing
-  into strings by the byte index of an encoded representation rather
-  than by a character index, which cannot be implemented both
-  efficiently and simply for variable-width encodings of Unicode
-  strings.
+  Conceptually, a \texttt{String} object is a partial function from
+  indices to characters: for some index values, no character value is
+  returned and instead an exception is thrown. This allows for efficient
+  indexing into \texttt{String}s by the byte index of an encoded
+  representation rather than by a character index, which cannot be
+  implemented both efficiently and simply for variable-width encodings
+  of Unicode \texttt{String}s.
 \end{itemize}
 
 \hypertarget{characters}{%
 \subsection{Characters}\label{characters}}
 
-A Char value represents a single character, it is just a 32-bit
+A \texttt{Char} value represents a single character, it is just a 32-bit
 primitive type with a special literal representation and appropriate
 arithmetic behaviors, and which can be converted to a numeric value
 representing a Unicode code point. \textbf{Julia} packages may define
-other subtypes of AbstractChar, e.g.~to optimize operations for other
-text encodings.
+other subtypes of \texttt{AbstractChar}, e.g.~to optimize operations for
+other text encodings.
 
-One can easily convert a \emph{Char} to its integer value with
-\texttt{c\ =\ Int(\textquotesingle{}x\textquotesingle{})} as well as
-convert an integer value back to a \emph{Char} just as easily as
+One can easily convert a \texttt{Char} to its integer value, for eg.
+with \texttt{c\ =\ Int(\textquotesingle{}x\textquotesingle{})},
+\texttt{c} is binded to the value \texttt{120}. One can also convert an
+integer value back to a \texttt{Char} just as easily as
 \texttt{Char(120)}.
 
 Not all integer values are valid Unicode code points, but for
-performance, the Char conversion does not check that every character
-value is valid. If you want to check that each converted value is a
-valid code point, use the \texttt{isvalid} function
+performance, the \texttt{Char} conversion does not check that every
+character value is valid. If you want to check that each converted value
+is a valid code point, use the \texttt{isvalid} function
 \texttt{isvalid(Char,\ 0x110000)}.
 
 Comparisons and a limited amount of arithmetic can be performed with
-\emph{Char}.
+\texttt{Char}.
 
 \begin{verbatim}
 julia> 'A' < 'a'
@@ -764,8 +770,8 @@ julia 'A' + 3
 \hypertarget{string-basics}{%
 \subsection{String Basics}\label{string-basics}}
 
-String literals are delimited by doube quotes or triple double quotes.
-Log lines in strings can be broken up by preceding the newline with a
+String literals are delimited by double quotes or triple double quotes.
+Long lines in strings can be broken up by preceding the newline with a
 backslash ().
 
 To extract a character from a string \texttt{str}, one can index into it
@@ -773,24 +779,24 @@ as \texttt{str{[}begin{]}} for the first character, \texttt{str{[}i{]}}
 for the \texttt{i}-th index and \texttt{str{[}end{]}} for the last
 character. Recall that in \textbf{Julia} indexes start from 1.
 
-Many Julia objects, including strings, can be indexed with integers. The
-index of the first element (the first character of a string) is returned
-by \texttt{firstindex(str)}, and the index of the last element
-(character) with \texttt{lastindex(str)}. The keywords \texttt{begin}
-and end can be used inside an indexing operation as shorthand for the
-first and last indices, respectively, along the given dimension. String
-indexing, like most indexing in \textbf{Julia}, is 1-based:
-\texttt{firstindex} always returns 1 for any \emph{AbstractString}. As
-we will see below, however, \texttt{lastindex(str)} is not in general
-the same as \texttt{length(str)} for a string, because some Unicode
-characters can occupy multiple ``code units''.
+Many \textbf{Julia} objects, including strings, can be indexed with
+integers. The index of the first element (the first character of a
+string) is returned by \texttt{firstindex(str)}, and the index of the
+last element (character) with \texttt{lastindex(str)}. The keywords
+\texttt{begin} and \texttt{end} can be used inside an indexing operation
+as shorthand for the first and last indices, respectively, along the
+given dimension. String indexing, like most indexing in \textbf{Julia},
+is 1-based: \texttt{firstindex} always returns 1 for any
+\texttt{AbstractString}. However, \texttt{lastindex(str)} is not in
+general the same as \texttt{length(str)} for a string, because some
+Unicode characters can occupy multiple ``code units''.
 
 \hypertarget{concatenation}{%
 \subsection{Concatenation}\label{concatenation}}
 
-Concatenation of \texttt{str1}, \texttt{str2}, \ldots, \texttt{strn} can
-be performed using the function \texttt{string} as
-\texttt{string(str1,\ str2,\ ...,\ strn)}.\\
+Concatenation of \texttt{str1}, \texttt{str2}, \texttt{str3} can be
+performed using the function \texttt{string} as
+\texttt{string(str1,\ str2,\ str3)}.\\
 \textbf{Julia} also provides \texttt{*} for string concatenation as
 \texttt{str1\ *\ str2\ *\ str3}.
 
@@ -800,7 +806,7 @@ be performed using the function \texttt{string} as
 Constructing strings using concatenation can become a bit cumbersome,
 however. To reduce the need for these verbose calls to \texttt{string}
 or repeated ``multiplications'', \textbf{Julia} allows interpolation
-into string literals using \texttt{\$}, as in Perl.
+into string literals using \texttt{\$}, as in \textbf{Perl}.
 
 \begin{verbatim}
 julia> s1 = "Molly";
@@ -895,11 +901,11 @@ regular expression does match, the value returned by match is a
 In \textbf{Julia}, a function is an object that maps a tuple of argument
 values to a return value. \textbf{Julia} functions are not pure
 mathematical functions, because they can alter and be affected by the
-global state of the program. The basic syntex for defining functions in
+global state of the program. The basic syntax for defining functions in
 \textbf{Julia} is:
 
 \begin{verbatim}
-function f(x, y))
+function f(x, y)
   x - y
 end
 \end{verbatim}
@@ -908,22 +914,23 @@ This function accepts two arguments \texttt{x} and \texttt{y} and
 returns the value of the last expression evaluated, which is
 \texttt{x-y}.
 
-In \textbf{Julia}, we can also define inline as
+In \textbf{Julia} we can also define inline functions as
 \texttt{f(x,y)\ =\ x\ -\ y}, called the ``assignment form''. In the
-``assignment form'', the body of the function must be a single
-expression, although it can be a compound expression.\\
-In \textbf{Julia}, functions are objects in their own; they can be
+``assignment form'' the body of the function must be a single
+expression; although it can be a compound expression.\\
+In \textbf{Julia} functions are objects in their own, they can be
 assigned or spitted out as a return value of a function.
 
 \hypertarget{argument-passing-behavior}{%
 \subsection{Argument Passing Behavior}\label{argument-passing-behavior}}
 
 \textbf{Julia} function arguments follow a convention sometimes called
-``pass-by-sharing'', which means that values are not copied when they
-are passed to functions. Function arguments themselves act as new
-variable bindings so that objects they refer to are identical to the
-passed values. Modifications to mutable values (such as \emph{Arrays})
-made within a function will be visible to the caller. For eg.:
+``pass-by-sharing'' which means that values are not copied when they are
+passed to functions. Function arguments themselves act as new variable
+bindings so that objects they refer to are identical to the passed
+values. \textbf{Modifications to mutable values (such as
+\texttt{Array}s) made within a function will be visible to the caller}.
+For eg.:
 
 \begin{verbatim}
 function f(x,y)
@@ -934,11 +941,11 @@ end
 \end{verbatim}
 
 In this code, the statement \texttt{x{[}1{]}\ =\ 3.9} mutates the object
-\texttt{x,}, and this change will be visible in the array passed by the
+\texttt{x}, and this change will be visible in the array passed by the
 caller for this argument. On the other hand, the assignment
-\texttt{y\ =\ 7\ +\ y} changes the binding (``name'') \texttt{y} to
-refer to a new value rather than mutatingj the original object; and
-hence does not change the corresponding argument passed by the caller.
+\texttt{y\ =\ 7\ +\ y} changes the binding (name) \texttt{y} to refer to
+a new value rather than mutating the original object; and hence does not
+change the corresponding argument passed by the caller.
 
 As a \emph{common convention} in \textbf{Julia} (not syntactically
 required), such a function would typically be named \texttt{f!(x,y)}
@@ -947,9 +954,9 @@ at least one of the arguments (often the first one) is being mutated.
 
 \hypertarget{argument-type-declarations}{%
 \subsection{Argument-type
-declarations}\label{argument-type-declarations}}
+Declarations}\label{argument-type-declarations}}
 
-You can declare the types of function arguements by appending
+You can declare the types of function arguments by appending
 \texttt{::TypeName} to the arguemnt name, as usual for \emph{Type
 Declarations} in \textbf{Julia}. Eg.:
 
@@ -971,7 +978,7 @@ the body of the function definition. As an alternative, the
 providing an expression whose value is returned.
 
 A return type can be specified in the function declaration using the
-\texttt{::} oeprator. This converts the return value to the specified
+\texttt{::} operator. This converts the return value to the specified
 type.
 
 \begin{verbatim}
@@ -1006,7 +1013,7 @@ operator. Hence codes such as \texttt{+(1,7,8)} or \texttt{*(9,7,5)} are
 perfectly valid.
 
 \hypertarget{operators-with-special-names}{%
-\subsection{Operators with Special
+\subsection{Operators With Special
 Names}\label{operators-with-special-names}}
 
 A few special expressions correspond to calls to functions with
@@ -1041,6 +1048,7 @@ anonymously, without being given a name, using either of these syntaxes:
 \begin{verbatim}
 julia> x -> x^2 + 2x - 1
 #1 (generic function with 1 method)
+
 julia> function (x)
          x^2 + 2x - 1
        end
@@ -1064,8 +1072,8 @@ julia> map(round, [1.3, 0.25, 1.74, 7.9])
 \hypertarget{tuples}{%
 \subsection{Tuples}\label{tuples}}
 
-\textbf{Julia} has a built-in data structure called a tuple that is
-closely related to function arguments and return values. A tuple is a
+\textbf{Julia} has a built-in data structure called a \emph{tuple} that
+is closely related to function arguments and return values. A tuple is a
 fixed-length container that can hold any values, but cannot be modified
 (it is immutable). Tuples are constructed with commas and parentheses,
 and can be accessed via indexing.
@@ -1133,8 +1141,8 @@ julia> bar(1,2,3,4,5,6)
 It is often possible to provide sensible default values for function
 arguments. This can save users from having to pass every argument on
 every call. For example, the function \texttt{Date(y,\ {[}m,\ d{]})}
-from \texttt{Dates} module constructs a \texttt{Date} type for a given
-year \texttt{y}, month \texttt{m} and day \texttt{d}. However,
+from the \texttt{Dates} module constructs a \texttt{Date} type for a
+given year \texttt{y}, month \texttt{m} and day \texttt{d}. However,
 \texttt{m} and \texttt{d} arguments are optional and their default value
 is 1. This behavior can be expressed concisely as:
 
@@ -1149,9 +1157,9 @@ julia> function date(y::Int64, m::Int64=1, d::Int64=1)
 date (generic function with 3 methods)
 \end{verbatim}
 
-Observe, that this definition calls another method of the Date function
+Observe that this definition calls another method of the Date function
 that takes one argument of type \texttt{UTInstant\{Day\}}. With this
-definition, the function can be called with either one, two or three
+definition the function can be called with either one, two or three
 arguments, and 1 is automatically passed when only one or two of the
 arguments are specified.
 
@@ -1164,17 +1172,17 @@ Keyword arguments can make these complex interfaces easier to use and
 extend by allowing arguments to be identified by name instead of only by
 position.
 
-For example, consider a function plot that plots a line. This function
-might have many options, for controlling line style, width, color, and
-so on. If it accepts keyword arguments, a possible call might look like
-\texttt{plot(x,\ y,\ width=2)}, where we have chosen to specify only
-line width. Notice that this serves two purposes. The call is easier to
-read, since we can label an argument with its meaning. It also becomes
-possible to pass any subset of a large number of arguments, in any
-order.
+For example, consider a function \texttt{plotMe} that plots a line. This
+function might have many options for controlling line style, width,
+color, and so on. If it accepts keyword arguments, a possible call might
+look like \texttt{plotMe(x,\ y,\ width=2)}, where we have chosen to
+specify only line width. Notice that this serves two purposes: the call
+is easier to read, since we can label an argument with its meaning; it
+also becomes possible to pass any subset of a large number of arguments,
+in any order.
 
 \textbf{Functions with keyword arguments are defined using a semicolon
-in the signature}:
+as}:
 
 \begin{verbatim}
 function plotMe(x, y; style="solid", width=1, color="black")
@@ -1183,13 +1191,14 @@ end
 \end{verbatim}
 
 When the function is called, the semicolon is optional; one can either
-call \texttt{plotMe(x,\ y,\ width=2)} or \texttt{plot(x,\ y;\ width=2)},
-but the former style is more common. An explicit semicolon is required
-only for passing varargs or computed keywords as described below.\\
+call \texttt{plotMe(x,\ y,\ width=2)} or
+\texttt{plotMe(x,\ y;\ width=2)}, but the former style is more common.
+An explicit semicolon is required only for passing varargs or computed
+keywords as described below.\\
 Keyword argument default values are evaluated only when necessary (when
 a corresponding keyword argument is not passed), and in left-to-right
-order. Therefore default expressions may refer to prior keyword
-arguments.
+order. \textbf{Therefore default expressions may refer to prior keyword
+arguments}.
 
 Keyword arguments can also be used in varargs functions.\\
 Extra keyword arguments can be collected using \texttt{...}, as in
@@ -1246,9 +1255,9 @@ arguments are initialized depends on the ``outer'' function; here,
 in the syntax \texttt{map(func,\ {[}A,\ B,\ C{]})}. This syntax makes it
 easier to use functions to effectively extend the language, since calls
 look like normal code blocks. There are many possible uses quite
-different from map, such as managing system state. For example, there is
-a version of open that runs code ensuring that the opened file is
-eventually closed:
+different from \texttt{map}, such as managing system state. For example,
+there is a version of \texttt{open} that runs code ensuring that the
+opened file is eventually closed:
 
 \begin{verbatim}
 open("outfile", "w") do io
@@ -1309,7 +1318,7 @@ each element of an array \texttt{A} to yield a new array via
 but in other languages vectorization is also often required for
 performance: \texttt{if} loops are slow, the ``vectorized'' version of a
 function can call fast library code written in a low-level language. In
-\textbf{Julia}, vectorized functions are not required for performance,
+\textbf{Julia} vectorized functions are not required for performance,
 and indeed it is often beneficial to write your own loops, but they can
 still be convenient. Therefore, any \textbf{Julia} function \texttt{f}
 can be applied elementwise to any array (or other collection) with the
@@ -1330,7 +1339,7 @@ julia> sin.(A)
  0.1411200080598672
 \end{verbatim}
 
-Of course, you can omit the dot if you write a specialized ``vector''
+Of course, you can omit the dot if you wrote a specialized ``vector''
 method of \texttt{f} e.g.~via
 \texttt{f(A::AbstractArray)\ =\ map(f,\ A)} and this is just as
 efficient as \texttt{f.(A)}. The advantage of the \texttt{f.(A)} syntax
@@ -1365,7 +1374,7 @@ do not allocate new arrays over and over again for the results. A
 convenient syntax for this is \texttt{X\ .=\ ...}, which is equivalent
 to \texttt{broadcast!(identity,\ X,\ ...)} except that, as above, the
 \texttt{broadcast!} loop is fused with any nested ``dot'' calls. For
-example, \texttt{X.=\ sin.(Y)} is equivalent to
+example, \texttt{X.=sin.(Y)} is equivalent to
 \texttt{broadcast!(sin,\ X,\ Y)}, overwriting \texttt{X} with
 \texttt{sin.(Y)} in-place. If the left-hand side is an array-indexing
 expression, e.g.~\texttt{X{[}begin+1:end{]}\ .=\ sin.(Y)}, then it
@@ -1397,7 +1406,7 @@ so that the left-hand side is updated in-place.
   \textbf{Exception Handling} like \texttt{try} \ldots{} \texttt{catch},
   \texttt{error} and \texttt{throw}.
 \item
-  \textbf{Tasks (Corountines)}: \texttt{yieldto}.
+  \textbf{Tasks (Coroutines)}: \texttt{yieldto}.
 \end{itemize}
 
 \textbf{Tasks} provide non local control flow, making it possible to
@@ -1409,8 +1418,8 @@ implemented in \textbf{Julia} using \textbf{Tasks}.
 \subsection{\texorpdfstring{\textbf{Compound
 Expressions}}{Compound Expressions}}\label{compound-expressions}}
 
-Compound expressions are basically a whole expresison composed of
-multiple subexpressions in order returning the value of the last
+Compound expressions are basically a whole expression composed of
+multiple subexpressions in order, returning the value of the last
 subexpression as its value. There are two \textbf{Julia} constructs that
 accomplish that: \texttt{begin} blocks and \texttt{;} chains. The value
 of both compound expression constructs is that of the last
@@ -1428,7 +1437,7 @@ julia> z = begin
 
 Since there are fairly small simple expresisons, they could've easily
 been placed onto a single line, which is where the \texttt{;} chain
-syntax comes in handy.
+syntax comes in handy:
 
 \begin{verbatim}
 julia> z = (x=1; y = 7x^2 + 63; sqrt(3x) + y);
@@ -1437,9 +1446,9 @@ julia> z = (x=1; y = 7x^2 + 63; sqrt(3x) + y);
 Although it is typical, there is no requirement for the \texttt{begin}
 blocks to be multiline or the \texttt{;} chains to be single lined.
 
-\hypertarget{conditinal-evaluation.}{%
-\subsection{\texorpdfstring{\textbf{Conditinal
-Evaluation}.}{Conditinal Evaluation.}}\label{conditinal-evaluation.}}
+\hypertarget{conditional-evaluation.}{%
+\subsection{\texorpdfstring{\textbf{Conditional
+Evaluation}.}{Conditional Evaluation.}}\label{conditional-evaluation.}}
 
 Conditional evaluation allows portions of code to be evaluated or not
 depending on the value of a boolean expression. The anatomy is the
@@ -1461,7 +1470,7 @@ end
 \end{verbatim}
 
 The \texttt{elseif} and \texttt{else} blocks are optional.\\
-\texttt{if} blocks do not introduce local scopre, they're then
+\texttt{if} blocks do not introduce local scope, they're then
 \emph{leaky}: new variables defined inside the \texttt{if} clauses can
 be used after the \texttt{if} block even if they weren't defined before.
 
@@ -1481,23 +1490,23 @@ syntax is as follows:
 a ? b : c
 \end{verbatim}
 
-Where \texttt{a} is the condition, \texttt{b} the expression that's
-evaluated if \texttt{a} evaluated to \texttt{true} and \texttt{c} the
-one that's evaluatend otherwise.
+Where \texttt{a} is the conditional expression, \texttt{b} the
+expression that's evaluated if \texttt{a} evaluated to \texttt{true} and
+\texttt{c} the one evaluated otherwise.
 
 \hypertarget{short-circuit-evaluation.}{%
 \subsection{\texorpdfstring{\textbf{Short-Circuit
 Evaluation}.}{Short-Circuit Evaluation.}}\label{short-circuit-evaluation.}}
 
 The \texttt{\&\&} and \texttt{\textbar{}\textbar{}} operators in
-\textbf{Julia} correspond to logicall \emph{and} and \emph{or}
+\textbf{Julia} correspond to logical \emph{and} and \emph{or}
 operations. And as in some languages they're \emph{short-circuited}
-mieaning that they do not necessarily evaluate their remaining arguments
+meaning that they do not necessarily evaluate their remaining arguments
 once the truth value of the whole expression if fully determined.
 
 \hypertarget{repeated-evaluation-loops}{%
 \subsection{\texorpdfstring{\textbf{Repeated Evaluation:
-loops}}{Repeated Evaluation: loops}}\label{repeated-evaluation-loops}}
+Loops}}{Repeated Evaluation: Loops}}\label{repeated-evaluation-loops}}
 
 There are two constructs for repeated evaluation of expressions: the
 \texttt{while} loop and the \texttt{for} loop. Their syntaxes are as
@@ -1510,7 +1519,7 @@ end
 \end{verbatim}
 
 \begin{verbatim}
-for conditioned_expression
+for condition
   action
 end
 \end{verbatim}
@@ -1538,7 +1547,7 @@ thrown using the function \texttt{throw} and interrupt the normal flow
 of control.
 
 \begin{verbatim}
-f(x) =  x > 0 ? 1 : throw(DomainError(x, "Damn! Fuck it man, x must be positive"))
+f(x) =  x > 0 ? 1 : throw(DomainError(x, "Dammit! x must be positive"))
 \end{verbatim}
 
 \begin{longtable}[]{@{}c@{}}
@@ -1594,9 +1603,9 @@ finally
 end
 \end{verbatim}
 
-The \emph{finally} clause is usefult in codes which perform state
-changes or use resources like files, there is typically clean-up work
-(closing files \ldots) that need to be done when the code is finished.
+The \emph{finally} clause is useful in codes which perform state changes
+or use resources like files; there is typically clean-up work (closing
+files \ldots) that need to be done when the code is finished.
 
 The \texttt{finally} keyword provides a way to run some code when a
 given block of code exits, regardless of how it exits.
@@ -1615,10 +1624,10 @@ of code can use the same name without referring to the same thing. The
 rules for when the same variable name does or doesn't refer to the same
 thing are called scope rules.
 
-The scope of a variable cannot be an arbitrary set of source lines,
+The scope of a variable cannot be an arbitrary set of source lines;
 instead, it will always line up with one of these blocks. There are two
 main types of scopes in \textbf{Julia}, \emph{global} and \emph{local}
-scope. In \textbf{julia} there's also a distinction between constructs
+scope. In \textbf{Julia} there's also a distinction between constructs
 which introduce a \emph{hard scope} and those which only introduce a
 \emph{soft scope} which affect wether shadowing a global variable by the
 name is allowed or not.
@@ -1660,7 +1669,7 @@ different rules.
 
 \textbf{Julia} uses lexical scoping meaning that a function's scope does
 not inherit from its caller scope but from the scope in which the
-function was defined. For eg. in this code
+function was defined. For eg. in this code:
 
 \begin{verbatim}
 julia> module Bar
@@ -1715,12 +1724,12 @@ by that name exists in any of the scopes that the current scope is
 nested inside of, including the current one.
 
 Some programming languages require explicitly declaring new variables
-before using them explicit declaration works in \textbf{Julia} too: in
+before using them; explicit declaration works in \textbf{Julia} too: in
 any local scope, writing \texttt{local\ x} declares a new local variable
-in that scope, regardless of whether there is already a variable named
+in that scope, regardless of wether there is already a variable named
 \texttt{x} in an outer scope or not. Declaring each new variable like
 this is somewhat verbose and tedious, however, so \textbf{Julia}, like
-many other languages, considers assignment to a variable name that
+many other languages considers assignment to a variable name that
 doesn't already exist to implicitly declare that variable. If the
 current scope is global, the new variable is global; if the current
 scope is local, the new variable is local to the innermost local scope
@@ -1790,7 +1799,7 @@ julia> var1 = let x
 \end{verbatim}
 
 Whereas assignments might reassign a new value to an existing value
-location, \texttt{ket} always creates a new location. This difference is
+location, \texttt{let} always creates a new location. This difference is
 usually not important, and is only detectable in the case of variables
 that outlive their scope via closures. The \texttt{let} syntax accepts a
 comma-separated series of assignments and variable names.
@@ -1817,7 +1826,7 @@ julia> Fs[2]()
 3
 \end{verbatim}
 
-Here we create and sotre two closures that return variable \texttt{i}.
+Here we create and store two closures that return variable \texttt{i}.
 However, it is always the same variable \texttt{i}, so the two closures
 behave identically. We can use \texttt{let} to create a new binding for
 \texttt{i}:
@@ -1954,14 +1963,30 @@ almost any time. If a global variable will not change, adding a
 
 Local constants are quite different. The compiler is able to determine
 automatically when a local variable is constant, so local constant
-declaratins are not necessary, and in fact are currently not supported.
+declarations are not necessary, and in fact are currently not supported.
 Special top-level assignments, such as those performed by the
 \texttt{function} and \texttt{struct} keywords, are constant by default.
 
 Note that \texttt{const} only affects the variable binding; the variable
 may be found to a mutable object (such as an array), and that object may
 still be modified. Additionally when ones tries to assign a value to a
-variable that is declared constant the following scenarios are possible.
+variable that is declared constant the following scenarios are possible:
+
+\begin{itemize}
+\tightlist
+\item
+  If a new value has a different type than the type of the constant then
+  an error is thrown.
+\item
+  If a new value has the same type as the constant then a warning is
+  printed.
+\item
+  If an assignment would not result in the change of variable value, no
+  message is given.
+\end{itemize}
+
+The last rule applies to immutable objects even if the dvariable binding
+would change.
 
 \newpage
 
@@ -1976,10 +2001,7 @@ actual values manipulated by the program are available. Object
 orientation allows some flexibility in statically typed languages by
 letting code be written without the precise types of values being known
 at compile time. The ability to write code that can operate on different
-typejs is called polymorphism. All code in classic dynamically typed
-languages is polymorphic: only by explicitly checking types, or when
-objects fail to support operations at run-time, are the types of any
-values ever restricted.
+types is called \emph{polymorphism}.
 
 \textbf{Julia} type system is dynamic, but it's allowed to indicate
 specific types. The default behavior in \textbf{Julia} when types are
@@ -1997,13 +2019,13 @@ to improve human readability, and to catch programmer errors.
 Generic types can be parameterized, and the hierarchical relationships
 between types are explicitly declared, rather than implied by compatible
 structure. One particularly distinctive feature of \textbf{Julia}'s type
-system is that concrete types may not subtype each other: all concrete
-types are final and may only have abstract types as their supertypes.
-While this might at first seem unduly restrictive, it has many
-beneficial consequences with surprisingly few drawbacks. it turns out
-that being able to inherit behavior is much more important than being
-able to inherit structure, and inheriting both causes significant
-difficulties in traditional objects-oriented languages. Other high-level
+system is that concrete types may not subtype each other: \emph{all
+concrete types are final and may only have abstract types as their
+supertypes}. While this might at first seem unduly restrictive, it has
+many beneficial consequences with surprisingly few drawbacks. It turns
+out that being able to inherit behavior is much more important than
+being able to inherit structure, and inheriting both causes significant
+difficulties in traditional object-oriented languages. Other high-level
 aspect of \textbf{Julia}'s type system that should be mentioned up front
 are:
 
@@ -2015,23 +2037,24 @@ are:
   single, fully connected type graph, all nodes of which are equally
   first-class as types.
 \item
-  There is no meaningful concept os a ``compile-time type'': the only
+  There is no meaningful concept of a ``compile-time type'': the only
   type a value has is its actual type when the program is running. This
   is called a ``run-time type'' in object-oriented languages where the
   combination of static compilation with polymorphism makes this
   distinction significant.
 \item
-  Only values, not variables, have types. Variables are simply names
-  bound to values, although for simplicity we may ``type of a varibale''
-  as shorthand for ``type of the value to which a variable refers''.
+  Only values, not variables, have types. \emph{Variables are simply
+  names bound to values}, although for simplicity we may say ``type of a
+  variable'' as shorthand for ``type of the value to which a variable
+  refers''.
 \item
   Both abstract and concrete types can be parameterized by other types.
   They can also be parameterized by symbols, by values of any type for
-  which \texttt{isbits} returns true (essentially, things like numbers
-  and bools that are stored like \textbf{C} types or \emph{structs} with
-  no pointers to other objects), and also by tuples thereof. Type
-  parameters may be omitted when they do not need to be referenced or
-  restricted.
+  which \texttt{isbits} returns true (essentially, things like
+  \emph{numbers} and \emph{bools} that are stored like \textbf{C} types
+  or \emph{structs} with no pointers to other objects), and also by
+  \emph{tuples} thereof. Type parameters may be omitted when they do not
+  need to be referenced or restricted.
 \end{itemize}
 
 \hypertarget{type-declarations}{%
@@ -2065,15 +2088,15 @@ variable with a declared type: the value is always converted to
 \hypertarget{abstract-types}{%
 \subsection{Abstract Types}\label{abstract-types}}
 
-Abstract types cannot be instantiated, and serve only as nodes in the
-type graph, thereby describing sets of related concrete types which are
-their descendants. Abstract types are the backbone of the type system:
-they form the conceptuall hierarchy which makes \textbf{Julia}'s type
-system more than just a collection of object implementations. Abstract
-types allow the construction of a hierarchy of types, providing a
-context into which concrete types can fit. This allows you, for example,
-to easily program to any type that is an integer, without restricting an
-algorithm to a specific type of integer.
+\emph{Abstract types cannot be instantiated, and serve only as nodes in
+the type graph}, thereby describing sets of related concrete types which
+are their descendants. Abstract types are the backbone of the type
+system: they form the conceptual hierarchy which makes \textbf{Julia}'s
+type system more than just a collection of object implementations.
+Abstract types allow the construction of a hierarchy of types, providing
+a context into which concrete types can fit. This allows you, for
+example, to easily program to any type that is an integer, without
+restricting an algorithm to a specific type of integer.
 
 Abstract types are declared using the \texttt{abstract\ type} keyword.
 The general syntaxes for declaring an abstract type are:
@@ -2089,8 +2112,8 @@ name is given by
 name can be optionally followed by \texttt{\textless{}:} and an
 already-existing type, indicating that the newly declared abstract type
 is a subtype of this ``parent'' type. When no supertype is given, the
-default supertype if \texttt{Any} (a predefined abstract type that all
-objects are instances of and all types are subtypes of. In type theory,
+default supertype is \texttt{Any} (a predefined abstract type that all
+objects are instances of and all types are subtypes of). In type theory
 \texttt{Any} is commonly called ``top'' because it is at the apex of the
 type graph. \textbf{Julia} also has a predefined abstract ``bottom''
 type, at the nadir of the type graph which is written as
@@ -2107,7 +2130,7 @@ abstract type Signed        <: Integer end
 abstract type Unsigned      <: Integer end
 \end{verbatim}
 
-The \texttt{Number} type is a direct chid type of \texttt{Any}, and
+The \texttt{Number} type is a direct child type of \texttt{Any}, and
 \texttt{Real} is its child. In turn, \texttt{Real} has two children (it
 has more, but only two are shown here): \texttt{Integer} and
 \texttt{AbstractFloat}.
@@ -2126,7 +2149,7 @@ julia> Integer <: AbstractFloat
 false
 \end{verbatim}
 
-An important use of abstract types is to provide default impementations
+An important use of abstract types is to provide default implementations
 for concrete types. To give a simple example, consider:
 
 \begin{verbatim}
@@ -2137,7 +2160,7 @@ end
 
 The first thing to note is that the above argument declarations are
 equivalent to \texttt{x::Any} and \texttt{y::Any}. When this function is
-invoked, say as \texttt{myplus(2,5)}, the dispathcer chooses the most
+invoked, say as \texttt{myplus(2,5)}, the dispatcher chooses the most
 specific method named \texttt{myplus} that matches the given arguments.
 Assuming no method more specific than the above is found, \textbf{Julia}
 next internally defines and compiles a method called \texttt{myplus}
@@ -2197,35 +2220,38 @@ primitive type <<name>> <<bits>> end
 primitive type <<name>> <: <<supertype>> <<bits>> end
 \end{verbatim}
 
-The number of bits indicates how much storage the type requires and the
-name gives the new type a name. A primitive type can optionally be
-declared to be a subtype of some supertype. If a supertype is omitted,
-then the type defaults to having \texttt{Any} as its immediate
-supertype. The declaration of \texttt{Bool} above therefore means that a
-boolean value takes eight bits to store, and has \texttt{Integer} as its
-immediate supertype. Currently, only sizes that are multiples of 8 bits
-are supported and you are likely to experience LLVM bugs with sizes
-other than those used above. Therefore, boolean values, although they
-really need just a single bit, cannot be declared to be any smaller than
-eight bits.
+The number of bits
+(\texttt{\textless{}\textless{}bits\textgreater{}\textgreater{}})
+indicates how much storage the type requires and the name gives the new
+type a name. A primitive type can optionally be declared to be a subtype
+of some supertype. If a supertype is omitted, then the type defaults to
+having \texttt{Any} as its immediate supertype. The declaration of
+\texttt{Bool} above therefore means that a boolean value takes eight
+bits to store, and has \texttt{Integer} as its immediate supertype.
+Currently, only sizes that are multiples of 8 bits are supported and you
+are likely to experience LLVM bugs with sizes other than those used
+above. Therefore, boolean values, although they really need just a
+single bit, cannot be declared to be any smaller than eight bits.
 
 \hypertarget{composite-types}{%
 \subsection{Composite Types}\label{composite-types}}
 
-Composite types are called records, structs, or objects in various
-languages. A composite type is a collection of named fields, an instance
-of which can be treated as a single value. In many languages, composite
-types are the only kind of user-definable type, and they are by far the
-most commonly used user-defined type in \textbf{Julia} as well. In
-mainstream object oriented languages, such as C++, Java, Python and
-Ruby, composite types also have named functions associated with them,
-and the combination is called an ``object''. In purer object-oriented
-languages, such as Ruby or Smalltalk, all values are objects whether
-they are composites or not. In less pure object oriented languages,
-including C++ and Java, some values, such as integers and floating-point
-values, are not objects, while instances of user-defined composite types
-are true objects with associated methods. In Julia, all values are
-objects, but functions are not bundled with the objects they operate on.
+Composite types are called \emph{records}, \emph{structs}, or
+\emph{objects} in various languages. A composite type is a collection of
+named fields, an instance of which can be treated as a single value. In
+many languages, composite types are the only kind of user-definable
+type, and they are by far the most commonly used user-defined type in
+\textbf{Julia} as well. In mainstream object oriented languages, such as
+\textbf{C++}, \textbf{Java}, \textbf{Python} and \textbf{Ruby},
+composite types also have named functions associated with them, and the
+combination is called an ``object''. In purer object-oriented languages,
+such as \textbf{Ruby} or \textbf{Smalltalk}, all values are objects
+whether they are composites or not. In less pure object oriented
+languages, including \textbf{C++} and \textbf{Java}, some values, such
+as integers and floating-point values, are not objects, while instances
+of user-defined composite types are true objects with associated
+methods. In \textbf{Julia}, all values are objects, but functions are
+not bundled with the objects they operate on.
 
 This is necessary since \textbf{Julia} chooses which method of a
 function to use by multiple dispatch, meaning that the types of all of a
@@ -2233,8 +2259,9 @@ function's arguments are considered when selecting a method, rather than
 just the first one (see \emph{Methods} for more information on methods
 and dispatch). Thus, it would be inappropriate for functions to
 ``belong'' to only their first argument. Organizing methods into
-function objects rather than havng named bags of methods ``inside'' each
-object ends up being a hihly beneficial aspect of the language design.
+function objects rather than having named bags of methods ``inside''
+each object ends up being a hihly beneficial aspect of the language
+design.
 
 Composite types are introduced with the \texttt{struct} keyword followed
 by a block of field names, optionally annotated with types using the
@@ -2293,7 +2320,7 @@ the keyword \texttt{mutable\ struct}.
 \hypertarget{mutable-composite-types}{%
 \subsection{Mutable Composite Types}\label{mutable-composite-types}}
 
-If a composite type is declared with \texttt{mutable\ struct} instead if
+If a composite type is declared with \texttt{mutable\ struct} instead of
 \texttt{struct}, then instances of it can be modified:
 
 \begin{verbatim}
@@ -2312,7 +2339,7 @@ julia> bar.baz = 1//2
 \end{verbatim}
 
 An extra interface between the fields and the user can be provided
-through \emph{instance Properties}. This grants more control on what can
+through \emph{Instance Properties}. This grants more control on what can
 be accessed and modified using the \texttt{bar.baz} notation.
 
 In order to support mutation, such objects are generally allocated on
@@ -2322,7 +2349,7 @@ only be reliably identified with its address. In constrast, an instance
 of an immutable type is associated with specific field values (the field
 values alone tell you everything about the object). In deciding whether
 to make a type mutable, ask whether two instances with the same field
-values would be considered identical, or ifthey might need to change
+values would be considered identical, or if they might need to change
 independently over time. If they would be considered identical, the type
 should probably be immutable.
 
@@ -2338,7 +2365,7 @@ To recap, two essential properties define \emph{immutability} in
   \tightlist
   \item
     For bits types this means that the bit pattern of a value once set
-    will never cha,ge and that value is the identity of a bits type.
+    will never change and that value is the identity of a bits type.
   \item
     For composite types, this means that identity of the values of its
     fields will never change. When the fields are bits types, that means
@@ -2359,7 +2386,7 @@ To recap, two essential properties define \emph{immutability} in
     integers and floats are typically passed to functions in registers
     (or stack allocated).
   \item
-    Mutable values, on the other hand are hea⁻allocated and passed to
+    Mutable values, on the other hand are heap-allocated and passed to
     functions as pointers to heap-allocated values except in cases where
     the compiler is sure that there's no way to tell that this is not
     what is happening.
@@ -2372,9 +2399,9 @@ Once declared mutable, some fields might be declared immutable using
 \hypertarget{declared-types}{%
 \subsection{Declared Types}\label{declared-types}}
 
-The three kinds of types (abstract, primitive, composite) discussed in
-the previous sections are actually all closely related. They share the
-same key properties:
+The three kinds of types (\emph{abstract}, \emph{primitive},
+\emph{composite}) discussed in the previous sections are actually all
+closely related. They share the same key properties:
 
 \begin{itemize}
 \tightlist
@@ -2390,13 +2417,13 @@ same key properties:
 
 Because of these shared properties, these types are internally
 represented as instances of the same concept: \texttt{DataType}. Which
-is the tupe of any of these types:
+is the tuple of any of these types:
 
 \begin{verbatim}
 julia> typeof(Real)
 DataType
 
-julia> tyepof(Int)
+julia> typeof(Int)
 DataType
 \end{verbatim}
 
@@ -2418,7 +2445,10 @@ julia> "Hi" :: IntOrString
 "Hi"
 
 julia> 1.0 :: IntOrString
-ERROR: TypeError: in typeassert, expected Union{Int64, AsbtractString}, got a value of type Float64
+ERROR: TypeError: in typeassert, expected Union{Int64, AbstractString}, got a value of type Float64
+Stacktrace:
+ [1] top-level scope
+   @ REPL[12]:1
 \end{verbatim}
 
 A particularly useful case of a \texttt{Union} type is
@@ -2454,7 +2484,7 @@ julia> struct Point{T}
        end
 \end{verbatim}
 
-This declaration defines a new paramaetric type, \texttt{Point\{T\}},
+This declaration defines a new parametric type, \texttt{Point\{T\}},
 holding two ``coordinates'' of type \texttt{T}. What, one may ask, is
 \texttt{T} ? Well, that's precisely the point of parametric types: it
 can be any type at all (or a value of any bits type, actually, although
@@ -2516,7 +2546,7 @@ However, there are three key differences:
   Tuple types may have any number of parameters.
 \item
   Tuple types are covariant in their parameters: \texttt{Tuple\{Int\}}
-  is a subtype of \texttt{Tuple\{any\}}. Therefor \texttt{Tuple\{Any\}}
+  is a subtype of \texttt{Tuple\{any\}}. Therefore \texttt{Tuple\{Any\}}
   is considered an abstract type, and tuple are only concrete if their
   parameters are.
 \item
@@ -2524,7 +2554,7 @@ However, there are three key differences:
 \end{itemize}
 
 Tuple values are written with parentheses and commas. When a tuple is
-constructed, an appropriate tuple is generated on demand.
+constructed, an appropriate tuple type is generated on demand.
 
 \hypertarget{vararg-tuple-types}{%
 \subsubsection{Vararg Tuple Types}\label{vararg-tuple-types}}
@@ -2579,11 +2609,12 @@ single tuple argument. The constructed \texttt{NamedTuple} type can be
 either a concrete type, with both parameters specified, or a type that
 specifies only field names.
 
-\hypertarget{parametric-primitive}{%
-\subsubsection{Parametric Primitive}\label{parametric-primitive}}
+\hypertarget{parametric-primitive-types}{%
+\subsubsection{Parametric Primitive
+Types}\label{parametric-primitive-types}}
 
 Primitive types can also be declared parametrically. For example,
-pointers are represented as primitive types which would be delcated in
+pointers are represented as primitive types which would be declared in
 \textbf{Julia} like:
 
 \begin{verbatim}
@@ -2650,11 +2681,9 @@ Type variables can be restricted with subtype relations.
 arrays whose element type is some kind of \texttt{Integer}. The syntax
 \texttt{Array\{\textless{}:Integer\}} is a convenient shorthand for
 \texttt{Array\{T\}\ where\ T\textless{}:Integer}. Type variables can
-have both lower and upper bounds.
-\texttt{Array\{T\}\ where\ Array\{T\}\ where\ T\textless{}:Integer}.
-Type variables can have both locaer and upper bounds.
-\texttt{Array\{T\}\ where\ Int\textless{}:T\textless{}:Number} refers to
-all arrays of \texttt{Number}s that are able to contain \texttt{Int}s
+have both lower and upper bounds:
+\texttt{Array\{T\}\ where\ \ Int\textless{}:T\textless{}:Integer} refers
+to all arrays of \texttt{Number}s that are able to contain \texttt{Int}s
 (since \texttt{T} must be at least as big as \texttt{Int}). The syntax
 \texttt{where\ T\textgreater{}:Int} also works to specify only the lower
 bound of a type variable, and \texttt{Array\{\textgreater{}:Int\}} is
@@ -2663,7 +2692,7 @@ equivalent to \texttt{Array\{T\}\ where\ T\textgreater{}:Int}.
 \hypertarget{singleton-types}{%
 \subsection{Singleton Types}\label{singleton-types}}
 
-Immutable composite types with no fields are called singletons.
+Immutable composite types with no fields are called \emph{singletons}.
 Formally, if
 
 \begin{enumerate}
@@ -2694,7 +2723,7 @@ true
 
 The \texttt{===} function confirms that the constructed instances of
 \texttt{NoFields} are actually one and the same. Parametric types can be
-singleton types when the above condition holds. For example,
+singleton types when the above condition holds. For example:
 
 \begin{verbatim}
 julia> struct NoFieldsParam{T}
@@ -2705,19 +2734,19 @@ false
 \end{verbatim}
 
 \hypertarget{types-of-functions}{%
-\subsection{Types of functions}\label{types-of-functions}}
+\subsection{Types of Functions}\label{types-of-functions}}
 
 Each function has its own type, which is a subtype of \texttt{Function}.
 Types of functions defined at top-level are singletons. When necessary,
-you can compare them \texttt{===}. Closures also have their own type,
-which is usually printed with names that end in
+you can compare them with \texttt{===}. Closures also have their own
+type, which is usually printed with names that end in
 \texttt{\#\textless{}number\textgreater{}}. Names and types for
 functions defined at different locations are distinct, but not
 guaranteed to be printed the same way across sessions.
 
 \hypertarget{typet-type-selectors}{%
-\subsection{\texorpdfstring{\texttt{Type\{T\}} type
-selectors}{Type\{T\} type selectors}}\label{typet-type-selectors}}
+\subsection{\texorpdfstring{\texttt{Type\{T\}} Type
+Selectors}{Type\{T\} Type Selectors}}\label{typet-type-selectors}}
 
 For each type \texttt{T}, \texttt{Type\{T\}} is an abstract parametric
 type whose only instance is the object \texttt{T}. While \texttt{Type}
@@ -2783,9 +2812,11 @@ julia> isa(1, AbstractFloat)
 false
 \end{verbatim}
 
+Note that \texttt{isa} works also as an infix function.
+
 The \texttt{typeof} function, already used throughout the manual in
 examples, return the type of its argument. Since types are objects, they
-also have types: we can ask what their types are.
+also have types: we can ask what their types are!
 
 \hypertarget{custom-pretty-printing}{%
 \subsection{Custom pretty-printing}\label{custom-pretty-printing}}
@@ -2808,10 +2839,10 @@ Polar
 \hypertarget{value-types}{%
 \subsection{``Value types''}\label{value-types}}
 
-In \textbf{Julia}, In Julia, you can't dispatch on a value such as
-\texttt{true} or \texttt{false}. However, you can dispatch on parametric
-types, and \texttt{Julia} allows you to include ``plain bits'' values
-(Types, Symbols, Integers, floating-point numbers, tuples, etc.) as type
+In \textbf{Julia}, you can't dispatch on a value such as \texttt{true}
+or \texttt{false}. However, you can dispatch on parametric types, and
+\texttt{Julia} allows you to include ``plain bits'' values (Types,
+Symbols, Integers, floating-point numbers, tuples, etc.) as type
 parameters. A common example is the dimensionality parameter in
 \texttt{Array\{T,N\}}, where \texttt{T} is a type (e.g., Float64) but
 \texttt{N} is just an \texttt{Int}.
@@ -2875,7 +2906,7 @@ continually without being aware of it: all of \textbf{Julia}'s standard
 functions and operators have many methods defining their behavior over
 various possible combinations of argument type and count.
 
-When defining a function, on can optionally constrain the types of
+When defining a function, one can optionally constrain the types of
 parameters it is applicable to, using the \texttt{::} type-assertion
 operator, introduced in the section on \texttt{Composite\ Types}.
 
@@ -2888,8 +2919,8 @@ This function definition applies only to calls where \texttt{x} and
 \texttt{y} are both values of type \texttt{Float64} so that applying it
 to any other types of arguments will result in a \texttt{MethodError}.
 
-To define a function with multiple methods, one simply defines the
-function multiple times, with different numbers and types of arguments.
+\emph{To define a function with multiple methods, one simply defines the
+function multiple times, with different numbers and types of arguments}.
 The first method definition for a function creates the function object,
 and subsequent method definitions add new methods to the existing
 function object. The most specific method definition matching the number
@@ -2905,7 +2936,7 @@ unconstrained since all values in \textbf{Julia} are instances of the
 abstract type \texttt{Any}.
 
 \hypertarget{method-specializations.}{%
-\subsection{Method specializations.}\label{method-specializations.}}
+\subsection{Method Specializations.}\label{method-specializations.}}
 
 When you create multiple methods of the same function, this is sometimes
 called \emph{specialization}. In this case, you're specializing the
@@ -2979,7 +3010,7 @@ same_typ (generic function with 2 methods)
 
 The first method applies whenever both arguments are of the same
 concrete type, regardless of what type that is, while the second method
-acts as a catch-all, coveringj all other cases. Thus, overall, this
+acts as a catch-all, covering all other cases. Thus, overall, this
 defines a boolean function that checks whether its two arguments are of
 the same type:
 
@@ -3033,7 +3064,7 @@ julia> newfun()
 
 In this example, observe that the new definition for \texttt{newfun} has
 been created, but can't be immediately called. The new global is
-immediately visible to the tryeval function, so you could write
+immediately visible to the \texttt{tryeval} function, so you could write
 \texttt{return\ newfun} (without parentheses). But neither you, nor any
 of your callers, nor the functions they call, or etc. can call this new
 method definition!
@@ -3046,15 +3077,15 @@ However, future calls to \texttt{tryeval} will continue to see the
 definition of \texttt{newfun} as it was at the previous statement at the
 \texttt{REPL}, and thus before that call to \texttt{tryeval}.
 
-The implementation of this behavior is a ``world age counter''. This
-monotonically increasing value tracks each method definition operation.
-This allows describing ``the set of method definitions visible to a
-given runtime environment'' as a single number, or ``world age''. It
-also allows comparing the methods available in two worlds just by
-comparing their ordinal value. In the example above, we see that the
-``current world'' (in which the method \texttt{newfun} exists), is one
-greater than the task-local ``runtime world'' that was fixed when the
-execution of \texttt{tryeval} started.
+The implementation of this behavior is a ``\emph{world age counter}''.
+This monotonically increasing value tracks each method definition
+operation. This allows describing ``\emph{the set of method definitions
+visible to a given runtime environment}'' as a single number, or ``world
+age''. It also allows comparing the methods available in two worlds just
+by comparing their ordinal value. In the example above, we see that the
+``\emph{current world}'' (in which the method \texttt{newfun} exists),
+is one greater than the task-local ``\emph{runtime world}'' that was
+fixed when the execution of \texttt{tryeval} started.
 
 Sometimes it is necessary to get around that behavior; to do so one will
 call the function using \texttt{Base.invokelatest}:
@@ -3118,9 +3149,10 @@ julia> fetch(schedule(t, 1))
 
 Methods are associated with types, so it is possible to make any
 arbitrary \textbf{Julia} object ``callable'' by adding methods to its
-type (Such ``callable'' objects are sometimes called ``functors''). For
-example, you can define a type that stores the coefficients of a
-polynomial, but behaves like a function evaluating the polynomial:
+type (such ``callable'' objects are sometimes called
+``\emph{functors}''). For example, you can define a type that stores the
+coefficients of a polynomial, but behaves like a function evaluating the
+polynomial:
 
 \begin{verbatim}
 julia> struct Polynomial{R}
@@ -3144,8 +3176,7 @@ julia> function(p::Polynomial)(x)
 \emph{Constructors} are functions that create new objects (specifically,
 instances of Composite Types). In \textbf{Julia}, type objects also
 serve as constructor functions: they create new instances of themselves
-when applied to an argument tuple as a function. This much was already
-mentioned briefly when composite types were introduced. For example:
+when applied to an argument tuple as a function. For example:
 
 \begin{verbatim}
 julia> struct Foo
@@ -3179,8 +3210,8 @@ all of these cases and more.
 \hypertarget{outer-constructor-methods}{%
 \subsection{Outer Constructor Methods}\label{outer-constructor-methods}}
 
-A constructor is just like any other function in Julia in that its
-overall behavior is defined by the combined behavior of its methods.
+A constructor is just like any other function in \textbf{Julia} in that
+its overall behavior is defined by the combined behavior of its methods.
 Accordingly, you can add functionality to a constructor by simply
 defining new methods.
 
@@ -3189,7 +3220,7 @@ defining new methods.
 
 While outer constructor methods succeed in addressing the problem of
 providing additional convenience methods for constructing objects, they
-fail to address the other two use cases i.e.~\emph{enforcing invariants}
+fail to address the other two use cases i.e. \emph{enforcing invariants}
 and \emph{allowing construction of self-referential objects}. For these
 problems, one needs inner constructor methods. An inner constructor
 method is like an outer constructor method, except for two differences:
@@ -3232,7 +3263,7 @@ Stacktrace:
 
 If the type were declared mutable, you could reach in and directly
 change the field values to violate this invariant. Of course, messing
-around with an object's internals uninvited is bad practice. You (or
+around with an object's internals uninvited is a bad practice. You (or
 someone else) can also provide additional outer constructor methods at
 any later point, but once a type is declared, there is no way to add
 more inner constructor methods. Since outer constructor methods can only
@@ -3273,19 +3304,20 @@ julia> mutable struct SelfReferential
 \end{verbatim}
 
 This type may appear innocuous enough, until one considers how to
-construct an instance of it. If a is an instance of SelfReferential,
-then a second instance can be created by the call:
+construct an instance of it. If \texttt{a} is an instance of
+\texttt{SelfReferential}, then a second instance can be created by the
+call:
 
 \begin{verbatim}
 julia> b = SelfReferential(a)
 \end{verbatim}
 
 But how does one construct the first instance when no instance exists to
-provide as a valid value for its obj field? The only solution is to
-allow creating an incompletely initialized instance of SelfReferential
-with an unassigned obj field, and using that incomplete instance as a
-valid value for the obj field of another instance, such as, for example,
-itself.
+provide a valid value for its \texttt{obj} field? The only solution is
+to allow creating an incompletely initialized instance of
+\texttt{SelfReferential} with an unassigned \texttt{obj} field, and
+using that incomplete instance as a valid value for the \texttt{obj}
+field of another instance, such as, for example, itself.
 
 To allow for the creation of incompletely initialized objects,
 \textbf{Julia} allows the new function to be called with fewer than the
@@ -3308,7 +3340,7 @@ julia> mutable struct SelfReferential
 \subsection{Parametric Constructors}\label{parametric-constructors}}
 
 Parametric types add a few wrinkles to the constructor story. Recall
-from Parametric Types that, by default, instances of parametric
+from \textbf{Parametric Types} that, by default, instances of parametric
 composite types can be constructed either with explicitly given type
 parameters or with type parameters implied by the types of the arguments
 given to the constructor.
