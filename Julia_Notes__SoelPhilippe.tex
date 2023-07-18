@@ -70,10 +70,10 @@
 \begin{minipage}[c][7cm][t]{\textwidth}
 \vspace*{\fill}
 \centering
-{\Huge \textbf{WARNING}}\\
+{\Huge \textbf{WARNING!}}\\
 \textbf{These notes are still being written and therefore contain typos (be kind to report them).\\
-These notes are not, in any manner, guaranteed to be accurate. Any personal opinion therein is my
-sole mistake, do not blindly relate to these notes.\\
+These notes are not, in any manner, guaranteed to be accurate. Any inaccuracy therein is my
+sole mistake. Do not blindly relate to these notes.\\
 Refer only to the official documentation (https://docs.julialang.org/en/v1/)}.
 \vspace*{\fill}
 \end{minipage}
@@ -81,7 +81,7 @@ Refer only to the official documentation (https://docs.julialang.org/en/v1/)}.
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
 
-The \textbf{Julia} programming language aims to fill the role of a
+\textbf{Julia} programming language aims to fill the role of a
 programming language eliminating the performance trade-off, providing a
 single environment productive enough for prototyping and efficient
 enough for deploying performance-intensive applications. The
@@ -105,7 +105,7 @@ dynamic languages, including \textbf{Lisp}, \textbf{Perl},
 
 \hypertarget{julia-departures-from-typical-pl}{%
 \subsection{Julia Departures from Typical
-PL:}\label{julia-departures-from-typical-pl}}
+PL}\label{julia-departures-from-typical-pl}}
 
 \emph{Base} \textbf{Julia} and the standard library are written in
 \textbf{Julia} itself.\\
@@ -126,7 +126,7 @@ In \textbf{Julia} operators are functions with special notation.
 
 \hypertarget{summary-of-julia-features}{%
 \subsection{Summary of Julia
-features:}\label{summary-of-julia-features}}
+features}\label{summary-of-julia-features}}
 
 \begin{itemize}
 \tightlist
@@ -157,8 +157,8 @@ features:}\label{summary-of-julia-features}}
 
 \textbf{Julia} installation is straightforward whether using precompiled
 binaries or compiling from source. It can be downloaded and installed by
-following \href{https://julialang.org/downloads/}{Julia-lang download
-and Installation}.
+following \href{https://julialang.org/downloads/}{\textbf{Julia-lang download
+and Installation}}.
 
 The easiest way to learn and experiment with \textbf{Julia} is by
 starting an interactive session known as \texttt{REPL} through running
@@ -171,7 +171,7 @@ To evaluate an expression written in a source file \emph{file.jl}, write
 To run a code in a file non-interactively run it as:
 
 \begin{verbatim}
-$ julia script file.jl
+$ julia file.jl
 \end{verbatim}
 
 Get help by typing \texttt{?} into an empty \textbf{Julia} REPL prompt.
@@ -185,9 +185,9 @@ Get help by typing \texttt{?} into an empty \textbf{Julia} REPL prompt.
 variables. Variable names are case-sensitive, and have no semantic
 meaning. In the \textbf{Julia} \texttt{REPL} and several other
 \textbf{Julia} editing environments, one can type many Unicode math
-symbols by typing the backslashed \LaTeX symbol name followed by
+symbols by typing the backslashed \LaTeX{} symbol name followed by
 \texttt{{[}TAB{]}}. For example, the variable name \(\delta\) can be
-entered by typing \texttt{\textbackslash{}delta-tab}. \textbf{Julia}
+entered by typing \texttt{\textbackslash{}delta-{[}TAB{]}}. \textbf{Julia}
 will let you redefine built-in constants and functions if needed (though
 not recommended).
 
@@ -428,7 +428,7 @@ The precedence of numeric literal coefficients is slightly lower than
 that of unary operators such as negation. So -2x is parsed as (-2) * x.
 The precedence of numeric literal coefficients used for implicit
 multiplication is higher than other binary operators such as
-multiplication (*), and division (/, , and //). Neither juxtaposition of
+multiplication (*), and division (/ and //). Neither juxtaposition of
 two parenthesized expressions, nor placing a variable before a
 parenthesized expression, however, can be used to imply multiplication.
 
@@ -454,7 +454,7 @@ x + y & binary plus & performs addition \\
 x * y & times & performs multiplication \\
 x / y & divide & performs division \\
 x ÷ y & integer divide & x/y, truncated to an integer \\
-x ~y & inverse divide & equivalent to y / x \\
+x \backslash{} y & inverse divide & equivalent to y / x \\
 x \^{} y & power & raises x to yth power \\
 x \% y & remainder & equivalent to \texttt{rem(x,\ y)} \\
 \end{longtable}
@@ -703,7 +703,7 @@ high-level features about \textbf{Julia}'s strings:
   All string types are subtypes of the abstract type
   \texttt{AbstractString}, and external packages define additional
   \texttt{AbstractString} subtypes (e.g.~for other encodings). If you
-  deifne a function expecting a \texttt{String} argument, you should
+  define a function expecting a \texttt{String} argument, you should
   declare the type as \texttt{AbstractString} in order to accept any
   \texttt{String} type.
 \item
@@ -714,7 +714,7 @@ high-level features about \textbf{Julia}'s strings:
   represent any Unicode character (and which is based on the UTF-8
   encoding).
 \item
-  As in \textbf{Java}, \texttt{String} (objects) are immutable: the
+  As in \textbf{Java}, \texttt{String}s (objects) are immutable: the
   value of an \texttt{AbstractString} object cannot be changed. To
   construct a different \texttt{String} value you construct a new string
   from parts of other strings.
@@ -824,13 +824,12 @@ julia> "47 + 53 = $(47 + 53)"
 \subsection{Triple-Quoted String
 Literals}\label{triple-quoted-string-literals}}
 
-When strings are created using triple-quotes (``\,``\,'' \ldots{}
-``\,``\,``) they have some special behavior that can be useful for
+When strings are created using triple-quotes \texttt{"""..."""} they have some special behavior that can be useful for
 creating longer blocks of text. First, triple-quoted strings are also
 dedented to the level of the least-indented line. This is useful for
 defining strings within code that is indented.
 
-Triple-quoted string literals can contain " characters without escaping.
+Triple-quoted string literals can contain \texttt{"} characters without escaping.
 Note that line breaks in literal strings, whether single or
 triple-quoted, result in a newline (LF) character
 \texttt{\textbackslash{}n} in the string, even if your editor uses a
@@ -849,7 +848,7 @@ One can search for the index of a particular character using the
 allow to start the search for a character at a given offset by using the
 functions \texttt{findnext} and \texttt{findprev} with three
 arguments.\\
-One can use the function \texttt{occursin} to check if a function is
+One can use the function \texttt{occursin} to check if a set of characters is
 found within a string.
 
 \hypertarget{regular-expressions}{%
@@ -857,7 +856,7 @@ found within a string.
 
 \textbf{Julia} uses version 2 of Perl-compatible regular expressions
 (regexes), as provided by the PCRE library (see PCRE2 syntax description
-for mode details). Regular expressions are related to strings in two
+for more details). Regular expressions are related to strings in two
 ways the obvious connection is that regular expressions are used to find
 regular patterns in strings; the other connection is that regular
 expressions are themselves input as strings, which are parsed into a
@@ -957,7 +956,7 @@ at least one of the arguments (often the first one) is being mutated.
 Declarations}\label{argument-type-declarations}}
 
 You can declare the types of function arguments by appending
-\texttt{::TypeName} to the arguemnt name, as usual for \emph{Type
+\texttt{::TypeName} to the argument name, as usual for \emph{Type
 Declarations} in \textbf{Julia}. Eg.:
 
 \begin{verbatim}
@@ -1181,8 +1180,8 @@ is easier to read, since we can label an argument with its meaning; it
 also becomes possible to pass any subset of a large number of arguments,
 in any order.
 
-\textbf{Functions with keyword arguments are defined using a semicolon
-as}:
+Functions with keyword arguments are defined using a semicolon
+as:
 
 \begin{verbatim}
 function plotMe(x, y; style="solid", width=1, color="black")
@@ -1415,8 +1414,8 @@ construct: both exception handling and cooperative multitasking are
 implemented in \textbf{Julia} using \textbf{Tasks}.
 
 \hypertarget{compound-expressions}{%
-\subsection{\texorpdfstring{\textbf{Compound
-Expressions}}{Compound Expressions}}\label{compound-expressions}}
+\subsection{\texorpdfstring{Compound
+Expressions}{Compound Expressions}}\label{compound-expressions}}
 
 Compound expressions are basically a whole expression composed of
 multiple subexpressions in order, returning the value of the last
@@ -1447,8 +1446,8 @@ Although it is typical, there is no requirement for the \texttt{begin}
 blocks to be multiline or the \texttt{;} chains to be single lined.
 
 \hypertarget{conditional-evaluation.}{%
-\subsection{\texorpdfstring{\textbf{Conditional
-Evaluation}.}{Conditional Evaluation.}}\label{conditional-evaluation.}}
+\subsection{\texorpdfstring{Conditional
+Evaluation}{Conditional Evaluation}}\label{conditional-evaluation.}}
 
 Conditional evaluation allows portions of code to be evaluated or not
 depending on the value of a boolean expression. The anatomy is the
@@ -1495,8 +1494,8 @@ expression that's evaluated if \texttt{a} evaluated to \texttt{true} and
 \texttt{c} the one evaluated otherwise.
 
 \hypertarget{short-circuit-evaluation.}{%
-\subsection{\texorpdfstring{\textbf{Short-Circuit
-Evaluation}.}{Short-Circuit Evaluation.}}\label{short-circuit-evaluation.}}
+\subsection{\texorpdfstring{Short-Circuit
+Evaluation}{Short-Circuit Evaluation}}\label{short-circuit-evaluation.}}
 
 The \texttt{\&\&} and \texttt{\textbar{}\textbar{}} operators in
 \textbf{Julia} correspond to logical \emph{and} and \emph{or}
@@ -1505,8 +1504,8 @@ meaning that they do not necessarily evaluate their remaining arguments
 once the truth value of the whole expression if fully determined.
 
 \hypertarget{repeated-evaluation-loops}{%
-\subsection{\texorpdfstring{\textbf{Repeated Evaluation:
-Loops}}{Repeated Evaluation: Loops}}\label{repeated-evaluation-loops}}
+\subsection{\texorpdfstring{Repeated Evaluation:
+Loops}{Repeated Evaluation: Loops}}\label{repeated-evaluation-loops}}
 
 There are two constructs for repeated evaluation of expressions: the
 \texttt{while} loop and the \texttt{for} loop. Their syntaxes are as
@@ -1532,8 +1531,8 @@ containers can be iterated over at the same time in a single
 \texttt{for} loop using the \texttt{zip} function.
 
 \hypertarget{exception-handling.}{%
-\subsection{\texorpdfstring{\textbf{Exception
-Handling}.}{Exception Handling.}}\label{exception-handling.}}
+\subsection{\texorpdfstring{Exception
+Handling}{Exception Handling}}\label{exception-handling.}}
 
 When an unexpected condition occurs, a function may be unable to return
 a reasonable value to its caller. In such cases, it may be best for the
@@ -1587,7 +1586,7 @@ StringIndexError \\
 Note that the \texttt{error} function is used to produce an
 \texttt{ErrorException} that interrupts the normal flow of control.
 
-The \texttt{try/catch} statement allows for \texttt{Exceptions} to be
+The \texttt{try/catch} statement allows for \texttt{Exception}s to be
 tested for, and for the graceful handling of things that may ordinarily
 break the application.
 
@@ -1738,7 +1737,7 @@ assign to an existing local it always updates that existing local: you
 can only shadow a local by explicitly declaring a new local in a nested
 scope with the \texttt{local} keyword. In particular, this applies to
 variables assigned in inner functions, which may surprise users coming
-from Python where assignment in an inner functin creates a new local
+from \textbf{Python} where assignment in an inner function creates a new local
 unless the variable is explicitly declared to be non-local.
 
 When \texttt{x\ =\ \textless{}value\textgreater{}} occurs in a local
@@ -1850,7 +1849,7 @@ julia> Fs[2]()
 \end{verbatim}
 
 Since the \texttt{begin} construct does not introduce a new scope, it
-can be useful to use a zero-argument \texttt{let} to juste introduce a
+can be useful to use a zero-argument \texttt{let} to just introduce a
 new scope block without any new bindings immediately.
 
 \begin{verbatim}
@@ -2034,7 +2033,7 @@ are:
 \item
   There is no division between object and non-object values: all values
   in \textbf{Julia} are true objects having a type that belongs to a
-  single, fully connected type graph, all nodes of which are equally
+  single, fully connected, type graph, all nodes of which are equally
   first-class as types.
 \item
   There is no meaningful concept of a ``compile-time type'': the only
@@ -2124,7 +2123,7 @@ is an instance of \texttt{Union\{\}} and all types are supertypes of
 \begin{verbatim}
 abstract type Number end
 abstract type Real          <: Number end
-asbtract type AbstractFloat <: Read end
+asbtract type AbstractFloat <: Real end
 abstract type Integer       <: Real end
 abstract type Signed        <: Integer end
 abstract type Unsigned      <: Integer end
