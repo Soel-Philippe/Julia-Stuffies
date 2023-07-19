@@ -2259,7 +2259,7 @@ just the first one (see \emph{Methods} for more information on methods
 and dispatch). Thus, it would be inappropriate for functions to
 ``belong'' to only their first argument. Organizing methods into
 function objects rather than having named bags of methods ``inside''
-each object ends up being a hihly beneficial aspect of the language
+each object ends up being a highly beneficial aspect of the language
 design.
 
 Composite types are introduced with the \texttt{struct} keyword followed
@@ -2478,7 +2478,7 @@ surrounded by curly braces:
 \begin{verbatim}
 julia> struct Point{T}
          x::T
-         y::Y
+         y::T
          z::T
        end
 \end{verbatim}
@@ -2545,7 +2545,7 @@ However, there are three key differences:
   Tuple types may have any number of parameters.
 \item
   Tuple types are covariant in their parameters: \texttt{Tuple\{Int\}}
-  is a subtype of \texttt{Tuple\{any\}}. Therefore \texttt{Tuple\{Any\}}
+  is a subtype of \texttt{Tuple\{Any\}}. Therefore \texttt{Tuple\{Any\}}
   is considered an abstract type, and tuple are only concrete if their
   parameters are.
 \item
